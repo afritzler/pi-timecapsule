@@ -17,17 +17,32 @@
 # limitations under the License.
 #
 
-apt_package "hfsplus" do
-  action :install
-end
-
-apt_package "hfsutils" do
-  action :install
-end
-
-apt_package "hfsprogs" do
-  action :install
+# install basic hdfs packages
+%w{hfsplus hfsutils hfsprogs}.each do |pkg|
+  package pkg do
+    action :install
+  end
 end
 
 directory node['timecapsule_mount_dir'] do
+  owner "pi"
+  group "pi"
+  mode 00777
 end
+
+# update fstab
+
+# install & configure nettalk
+
+# install & configure avahi deamon
+%w{avahi-daemon libavahi-client-dev libdb5.3-dev db-util db5.3-util libgcrypt11 libgcrypt11-dev}.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+template "/etc/avahi/services/timecapsule_afpd.service" do
+  source "timecapsule_afpd.service.erb"
+end
+
+# add nettalk and avahi deamon as default services
