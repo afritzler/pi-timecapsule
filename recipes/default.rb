@@ -16,3 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+apt_package "hfsplus" do
+  action :install
+end
+
+apt_package "hfsutils" do
+  action :install
+end
+
+apt_package "hfsprogs" do
+  action :install
+end
+
+directory node['timecapsule_mount_dir'] do
+end
