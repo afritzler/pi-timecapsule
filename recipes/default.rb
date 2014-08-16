@@ -55,6 +55,11 @@ bash "install netatalk" do
   EOH
 end
 
+template "/usr/local/etc/afp.conf" do
+  mode "0644"
+  source "afp.conf.erb"
+end
+
 # install & configure avahi deamon
 %w{avahi-daemon libavahi-client-dev libdb5.3-dev db-util db5.3-util libgcrypt11 libgcrypt11-dev}.each do |pkg|
   package pkg do
@@ -63,6 +68,7 @@ end
 end
 
 template "/etc/avahi/services/timecapsule_afpd.service" do
+  mode "0644"
   source "timecapsule_afpd.service.erb"
 end
 
