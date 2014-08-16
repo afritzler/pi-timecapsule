@@ -41,7 +41,19 @@ if !File.readlines("/etc/fstab").grep(/TimeCapsule/).size > 0
   end
 end
 
-# install & configure nettalk
+# install & configure netatalk
+bash "install netatalk" do
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget http://prdownloads.sourceforge.net/netatalk/netatalk-3.1.5.tar.bz2
+  tar -xvf netatalk-3.1.0.tar.bz2
+  cd netatalk-3.1.0/
+  ./configure --with-init-style=debian --with-zeroconf
+  make
+  sudo make install
+  EOH
+end
 
 # install & configure avahi deamon
 %w{avahi-daemon libavahi-client-dev libdb5.3-dev db-util db5.3-util libgcrypt11 libgcrypt11-dev}.each do |pkg|
