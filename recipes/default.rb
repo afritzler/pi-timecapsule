@@ -31,6 +31,15 @@ directory node['timecapsule_mount_dir'] do
 end
 
 # update fstab
+if !File.readlines("/etc/fstab").grep(/TimeCapsule/).size > 0
+  bash "update fstab" do
+    user "root"
+    cwd "/etc"
+    code <<-EOH
+    echo "LABEL=TimeCapsule   /media/TimeCapsule/  hfsplus rw,force,exec,auto,users 0 2" >> fstab
+    EOH
+  end
+end
 
 # install & configure nettalk
 
