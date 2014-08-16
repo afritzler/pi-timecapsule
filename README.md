@@ -1,15 +1,15 @@
 pi-timecapsule Cookbook
 ========================
 
-Chef cookbook for setting up your Raspberry Pi as a backup server
+Chef cookbook for setting up your Raspberry Pi as a backup server. The steps for
+turning your Raspberry Pi into a TimeCapsule are taken from this
+[Blog Post](http://www.tim-dau.de/mac/raspberry-pi-time-capsule-fuer-backups/)
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - pi-timecapsule needs toaster to brown your bagel.
+* Raspberry Pi
+* USB Harddrive formated with HDFS
 
 Attributes
 ----------
