@@ -58,6 +58,10 @@ end
 template "/usr/local/etc/afp.conf" do
   mode "0644"
   source "afp.conf.erb"
+  variables(
+    :hostname => node['timecapsule']['hostname'],
+    :mount_point => node['timecapsule']['mount_point']
+  )
 end
 
 # install & configure avahi deamon

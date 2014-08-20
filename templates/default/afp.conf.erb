@@ -1,11 +1,11 @@
 [Global]
-hostname = TimeCapsule
+hostname =  <%= @hostname %>
 mimic model = TimeCapsule
 log file = /var/log/netatalk.log
 log level = default:info
 
 [Data]
-path = /media/TimeCapsule
+path = <%= @mount_point %>
 cnid scheme = dbd
 file perm = 0660
 directory perm = 0770
