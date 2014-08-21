@@ -76,4 +76,11 @@ template "/etc/avahi/services/timecapsule_afpd.service" do
   source "timecapsule_afpd.service.erb"
 end
 
-# add nettalk and avahi deamon as default services
+# add netatalk and avahi deamon as default services
+bash "add bootup services" do
+  user "root"
+  code <<-EOH
+  sudo update-rc.d netatalk defaults
+  sudo update-rc.d avahi-daemon defaults
+  EOH
+end
