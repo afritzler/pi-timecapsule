@@ -31,7 +31,7 @@ directory node['timecapsule']['mount_point'] do
 end
 
 # update fstab
-if !File.readlines("/etc/fstab").grep(/TimeCapsule/).size > 0
+if File.readlines("/etc/fstab").grep(/TimeCapsule/).size == 0
   bash "update fstab" do
     user "root"
     cwd "/etc"
@@ -46,9 +46,9 @@ bash "install netatalk" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-  wget http://prdownloads.sourceforge.net/netatalk/netatalk-3.1.5.tar.bz2
-  tar -xvf netatalk-3.1.0.tar.bz2
-  cd netatalk-3.1.0/
+  wget http://prdownloads.sourceforge.net/netatalk/netatalk-3.1.6.tar.bz2
+  tar -xvf netatalk-3.1.6.tar.bz2
+  cd netatalk-3.1.6/
   ./configure --with-init-style=debian --with-zeroconf
   make
   sudo make install
