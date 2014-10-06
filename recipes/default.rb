@@ -18,7 +18,7 @@
 #
 
 # install basic hdfs packages
-%w{hfsplus hfsutils hfsprogs}.each do |pkg|
+%w{hfsplus hfsutils hfsprogs libdb5.3}.each do |pkg|
   package pkg do
     action :install
   end
