@@ -24,7 +24,7 @@
   end
 end
 
-directory node['timecapsule_mount_dir'] do
+directory node['timecapsule']['mount_point'] do
   owner "pi"
   group "pi"
   mode 00777
