@@ -18,7 +18,7 @@
 #
 
 # install basic hdfs packages
-%w{hfsplus hfsutils hfsprogs libdb5.3-dev}.each do |pkg|
+%w{hfsplus hfsutils hfsprogs libtracker-sparql-0.14-dev libtracker-miner-0.14-dev tracker libglib2.0-dev libdbus-glib-1-dev libdbus-1-dev systemtap-sdt-dev libcrack2-dev libldap2-dev libacl1-dev libavahi-client-dev libmysqlclient-dev libdb-dev libwrap0-dev libpam0g-dev libkrb5-dev libgcrypt11-dev libssl-dev build-essential}.each do |pkg|
   package pkg do
     action :install
   end
@@ -46,10 +46,16 @@ bash "install netatalk" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-  wget http://prdownloads.sourceforge.net/netatalk/netatalk-3.1.5.tar.bz2
-  tar -xvf netatalk-3.1.5.tar.bz2
-  cd netatalk-3.1.5/
-  ./configure --with-init-style=debian --with-zeroconf
+  wget http://prdownloads.sourceforge.net/netatalk/netatalk-3.1.6.tar.bz2
+  tar -xvf netatalk-3.1.6.tar.bz2
+  cd netatalk-3.1.6/
+  ./configure \
+        -with-init-style=debian-sysv \
+        --with-cracklib \
+        --enable-krbV-uam \
+        --with-pam-confdir=/etc/pam.d \
+        --with-dbus-sysconf-dir=/etc/dbus-1/system.d \
+        --with-tracker-pkgconfig-version=0.14
   make
   sudo make install
   EOH
